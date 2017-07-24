@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "prestart": "node ./buildScripts/startMessage.js",
-    "start": "run-p  security-check main-js lint:watch",
+    "start": "run-p  security-check main-js lint:watch test:watch",
     "main-js": "node lib/index.js",
     "security-check": "nsp check",
     "lint": "esw src lib buildScripts --color",
     "lint:watch": "npm run lint -- --watch",
-    "test": "mocha"
+    "test": "mocha --reporter progress \"lib/**/*.test.js\"",
+    "test:watch": "npm run test -- --watch"
   },
   "repository": {
     "type": "git",
@@ -31,10 +32,13 @@
     "nsp": "2.6.3"
   },
   "devDependencies": {
+    "chai": "4.1.0",
     "eslint": "4.3.0",
     "eslint-config-google": "0.9.1",
     "eslint-plugin-node": "5.1.1",
     "eslint-watch": "3.1.2",
-    "npm-run-all": "4.0.2"
+    "mocha": "3.4.2",
+    "npm-run-all": "4.0.2",
+    "sinon": "2.3.8"
   }
 }
